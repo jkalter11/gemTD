@@ -1,0 +1,12 @@
+== README
+
+The astar.js code here is a modified version of an implementation written by
+Brian Grinstead from:
+https://github.com/bgrins/javascript-astar
+
+The binaryheap.js code is a modified version of code written by
+Marijn Haverbeke taken from:
+http://eloquentjavascript.net/1st_edition/appendix2.html
+
+The license can be found at:
+http://creativecommons.org/licenses/by/3.0/

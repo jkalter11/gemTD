@@ -1,0 +1,269 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: #eee;
+}
+
+#flash-notice {
+	padding-top: 5px;
+	color: #00BB00;
+}
+
+#flash-alert {
+	padding-top: 5px;
+	color: #BB0000;
+}
+
+#nav {
+	width: 100%;
+	background-color: #222;
+	position: relative;
+	height: 5vh;
+}
+
+#nav ul {
+	margin-left: 186px;
+}
+
+#nav li {
+	display: inline;
+	padding-right: 50px;
+	line-height: 35px;
+	text-transform: uppercase;
+}
+
+#nav li a {
+	text-decoration: none;
+	color: #eee;
+	font-size: 130%;
+}
+
+#nav li a:hover {
+	color: #009f9f;
+}
+
+#startWave {
+	width: 120px;
+	height: 20px;
+	border: 2px outset #222;
+	background-color: #4444aa;
+	color: #eee;
+	text-align: center;
+	position: absolute;
+}
+
+#startWave:hover {
+	background-color: #4444ff;
+	cursor: pointer;
+}
+
+#left {
+	width: 150px;
+	height: 94.5vh;
+	left: 0;
+	top: 50px;
+	/* border: 1px solid blue; */
+	position: absolute;
+}
+
+#right {
+	float: right;
+	width: 150px;
+	height: 94.5vh;
+	top: 50px;
+	left: 1250px;
+	/* border: 1px solid blue; */
+	position: absolute;
+}
+
+#main {
+	position: relative;
+	width: 1000px;
+	height: 600px;
+	margin: 0 auto;
+	border: 1px solid red;
+	padding: 0;
+}
+
+#new_game {
+	width: 80px;
+	height: 20px;
+	border: 2px outset #222;
+	background-color: #4444aa;
+	color: #eee;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#new_game:hover {
+	background-color: #4444ff;
+	cursor: pointer;
+}
+
+#start_page {
+	text-align: center;
+}
+
+.grid {
+	width: 48px;
+	height: 48px;
+	border: 1px solid green;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+}
+
+.row0 { position: absolute; top: 0px;}
+.row1 { position: absolute; top: 50px;}
+.row2 { position: absolute; top: 100px;}
+.row3 { position: absolute; top: 150px;}
+.row4 { position: absolute; top: 200px;}
+.row5 { position: absolute; top: 250px;}
+.row6 { position: absolute; top: 300px;}
+.row7 { position: absolute; top: 350px;}
+.row8 { position: absolute; top: 400px;}
+.row9 { position: absolute; top: 450px;}
+.row10 { position: absolute; top: 500px;}
+.row11 { position: absolute; top: 550px;}
+.row12 { position: absolute; top: 600px;}
+.col0 { position: absolute; left: 0px; }
+.col1 { position: absolute; left: 50px; }
+.col2 { position: absolute; left: 100px; }
+.col3 { position: absolute; left: 150px; }
+.col4 { position: absolute; left: 200px; }
+.col5 { position: absolute; left: 250px; }
+.col6 { position: absolute; left: 300px; }
+.col7 { position: absolute; left: 350px; }
+.col8 { position: absolute; left: 400px; }
+.col9 { position: absolute; left: 450px; }
+.col10 { position: absolute; left: 500px; }
+.col11 { position: absolute; left: 550px; }
+.col12 { position: absolute; left: 600px; }
+.col13 { position: absolute; left: 650px; }
+.col14 { position: absolute; left: 700px; }
+.col15 { position: absolute; left: 750px; }
+.col16 { position: absolute; left: 800px; }
+.col17 { position: absolute; left: 850px; }
+.col18 { position: absolute; left: 900px; }
+.col19 { position: absolute; left: 950px; }
+
+.path {
+	background-color: pink;
+	opacity: 50%;
+}
+
+.shortest {
+
+}
+
+.start {
+	background-color: #047;
+	-webkit-transition: background 0.5s ease;
+	-moz-transition:    background 0.5s ease;
+	-ms-transition:     background 0.5s ease;
+	transition:         background 0.5s ease;
+}
+
+.end {
+	background-color: #047;
+	-webkit-transition: background 0.5s ease;
+	-moz-transition:    background 0.5s ease;
+	-ms-transition:     background 0.5s ease;
+	transition:         background 0.5s ease;
+}
+
+.blink {
+  background-color: #07b;
+	-webkit-transition: background 0.5s ease;
+	-moz-transition:    background 0.5s ease;
+	-ms-transition:     background 0.5s ease;
+	transition:         background 0.5s ease;
+}
+
+.wave {
+	background-color: #f22;
+	-webkit-transition: background 0.5s ease-in;
+	-moz-transition:    background 0.5s ease-in;
+	-ms-transition:     background 0.5s ease-in;
+	transition:         background 0.5s ease-in;
+}
+
+.enemy {
+	width: 48px;
+	height: 48px;
+	border: 1px solid black;
+	border-radius: 50%;
+	background-color: yellow;
+	position: absolute;
+	z-index: 10;
+}
+
+.hoverValid {
+	background-color: #2f2 !important;
+	opacity: 50%;
+}
+
+.hoverInvalid {
+	background-color: #f22 !important;
+	opacity: 50%;
+}
+
+.hoverBorder {
+	border-color: red !important;
+}
+
+.rock {
+	background-color: gray;
+}
+
+.neighbor {
+	background-color: orange;
+}
+
+.current {
+	background-color: pink;
+}
+
+.alexandrite {
+	background-color: purple !important;
+}
+
+.amber {
+	background-color: #993300 !important;
+}
+
+.citrine {
+	background-color: orange !important;
+}
+
+.garnet {
+	background-color: red !important;
+}
+
+.opal {
+	background-color: black !important;
+}
+
+.peridot {
+	background-color: #99CC00 !important;
+}
+
+.quartz {
+	background-color: #CCCCFF !important;
+}
+
+.tanzanite {
+	background-color: #000066 !important;
+}
+
+.turquoise {
+	background-color: #43c6db !important;
+}
+
+.selected {
+	border-color: yellow;
+}
