@@ -127,6 +127,7 @@ h2 {
 	margin: 0;
 	padding: 0;
 	vertical-align: top;
+	z-index: 5;
 }
 
 .row0 { position: absolute; top: 0px;}
@@ -166,7 +167,7 @@ h2 {
 .path {
 	background-color: pink;
 	opacity: 50%;
-	z-index: 3;
+	z-index: 5;
 }
 
 .shortest {
