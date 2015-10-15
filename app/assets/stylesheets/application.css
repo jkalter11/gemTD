@@ -7,6 +7,19 @@ body {
 	background-color: #eee;
 }
 
+h2 {
+	margin-left: 20px;
+}
+
+#instructions {
+	list-style: circle;
+	margin-left: 20px;
+}
+
+#instructions li {
+	padding-top: 10px;
+}
+
 #flash-notice {
 	padding-top: 5px;
 	color: #00BB00;
@@ -25,7 +38,7 @@ body {
 }
 
 #nav ul {
-	margin-left: 186px;
+	margin-left: 220px;
 }
 
 #nav li {
@@ -61,19 +74,18 @@ body {
 }
 
 #left {
-	width: 150px;
-	height: 94.5vh;
+	width: 190px;
+	height: 93vh;
 	left: 0;
-	top: 50px;
-	/* border: 1px solid blue; */
+	top: 36px;
+	/*border: 1px solid blue;*/
 	position: absolute;
 }
 
 #right {
-	float: right;
-	width: 150px;
-	height: 94.5vh;
-	top: 50px;
+	width: 190px;
+	height: 93vh;
+	top: 36px;
 	left: 1250px;
 	/* border: 1px solid blue; */
 	position: absolute;
@@ -154,6 +166,7 @@ body {
 .path {
 	background-color: pink;
 	opacity: 50%;
+	z-index: 3;
 }
 
 .shortest {
@@ -197,7 +210,7 @@ body {
 	height: 48px;
 	border: 1px solid black;
 	border-radius: 50%;
-	background-color: yellow;
+	background-color: white;
 	position: absolute;
 	z-index: 10;
 }
@@ -218,6 +231,7 @@ body {
 
 .rock {
 	background-color: gray;
+	z-index: 5;
 }
 
 .neighbor {
@@ -266,4 +280,22 @@ body {
 
 .selected {
 	border-color: yellow;
+}
+
+.range {
+	border: 1px solid black;
+	border-radius: 50%;
+	width: 400px;
+	height: 400px;
+	position: absolute;
+	z-index: 4;
+}
+
+.bullet {
+	z-index: 10;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: red;
+	position: absolute;
 }

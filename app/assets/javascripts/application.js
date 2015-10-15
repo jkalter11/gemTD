@@ -28,6 +28,10 @@ var ready = function() {
 	var TANZANITE = 7;
 	var TURQUOISE = 8;
 
+	var radius = 200;
+	var circumference = 2 * Math.PI * radius;
+	var timer = 51;
+
 	//initialize grid array
 	for(var grid = []; grid.length < 12; grid.push([]));
 	var endNodes = [];
@@ -208,8 +212,15 @@ var ready = function() {
 			{
 				if($(this).hasClass('rock'))
 				{
+					$('.range').remove();
 					$('.grid').removeClass('selected');
 					$(this).addClass('selected');
+				}
+				if($(this).hasClass('gem') || $(this).hasClass('placedThisRound'))
+				{
+					$('#main').append('<div class="range"></div>');
+					$('.range').last().css('top', $(this).position().top - 175);
+					$('.range').last().css('left', $(this).position().left - 175);
 				}
 				$(document).keypress(function(event)
 				{
@@ -368,51 +379,141 @@ var ready = function() {
 				}
 			},1000);
 
+			var shoot = function(bullet, enemy, XdistanceToTower, YdistanceToTower, interval)
+			{
+				var distance = Math.sqrt(XdistanceToTower * XdistanceToTower + YdistanceToTower * YdistanceToTower);
+				var time = 5;
+				var velx = XdistanceToTower / time;
+				var vely = YdistanceToTower / time;
+
+				bullet.css('top', bullet.position().top + vely);
+				bullet.css('left', bullet.position().left + velx);
+
+				//bullet is going to the right
+				if(velx > 0 && bullet.position().left + 25 > enemy.position().left)
+				{
+					//bullet is going up
+					if(vely < 0 && bullet.position().top - 25 < enemy.position().top)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+					//bullet is going down
+					if(vely > 0 && bullet.position().top + 25 > enemy.position().top)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+					//bullet is going straight right
+					if(vely == 0)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+				}
+
+				//bullet is going left
+				if(velx < 0 && bullet.position().left - 25 < enemy.position().left)
+				{
+					//bullet is going up
+					if(vely < 0 && bullet.position().top - 25 < enemy.position().top)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+					//bullet is going down
+					if(vely > 0 && bullet.position().top + 25 > enemy.position().top)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+					//bullet is going straight left
+					if(vely == 0)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+				}
+				//bullet is going straight up or down
+				if(velx == 0)
+				{
+					//bullet is going up
+					if(vely < 0 && bullet.position().top - 25 < enemy.position().top)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+					//bullet is going down
+					if(vely > 0 && bullet.position().top + 25 > enemy.position().top)
+					{
+						bullet.remove();
+						clearInterval(interval);
+					}
+				}
+
+			};
+
+			//creates a bullet at the tower that is in range
+			var createBullet = function(tower)
+			{
+				$('#main').append('<div class="bullet"></div>');
+				var bullet = $('.bullet').last();
+				bullet.css('top', tower.position().top + 20);
+				bullet.css('left', tower.position().left + 20);
+				return bullet;
+			};
+
+			//checks to see if an enemy is whithin range of a tower and calls the shoot interval
+			var checkRange = function(enemy)
+			{
+				//loops through each tower and checks range of enemy
+				for(var i = 0; i < $('.gem').length; i++)
+				{
+					var tower = $('.gem:nth('+ i +')');
+					var XdistanceToTower = enemy.position().left - tower.position().left;
+					var YdistanceToTower = enemy.position().top - tower.position().top;
+					var distance = Math.sqrt(XdistanceToTower * XdistanceToTower + YdistanceToTower * YdistanceToTower);
+					//if the tower is within range
+					if(distance < radius && timer > 20)
+					{
+							timer = 0;
+							var x = XdistanceToTower;
+							var y = YdistanceToTower;
+							var bullet = createBullet(tower);
+							var interval;
+							interval = setInterval( function() { shoot(bullet, enemy, x, y, interval); }, 10);
+					}
+				}
+			};
+
 			//moves each enemy along the shortest path
 			var moveEnemy = function(enemy, pathCount)
 			{
 				var move = setInterval(function()
 				{
+					timer++;
 					var nextPos = path[pathCount];
-					if(nextPos.position().left > enemy.position().left + 30)
+					checkRange(nextPos);
+					if(nextPos.position().left == enemy.position().left && nextPos.position().top == enemy.position().top)
 					{
-						if(nextPos.position().top > enemy.position().top + 30)
-						{
-							enemy.animate({left: '+=50px', top: '+=50px'},200, 'swing');
-						}
-						else if(nextPos.position().top < enemy.position().top - 30)
-						{
-							enemy.animate({left: '+=50px', top: '-=50px'},200, 'swing');
-						}
-						else
-						{
-							enemy.animate({left: '+=50px'},200, 'swing');
-						}
+						pathCount++;
 					}
-					else if(nextPos.position().left < enemy.position().left - 30)
+					if(nextPos.position().left > enemy.position().left)
 					{
-						if(nextPos.position().top > enemy.position().top + 30)
-						{
-							enemy.animate({left: '-=50px', top: '+=50px'},200, 'swing');
-						}
-						else if(nextPos.position().top < enemy.position().top - 30)
-						{
-							enemy.animate({left: '-=50px', top: '-=50px'},200, 'swing');
-						}
-						else
-						{
-							enemy.animate({left: '-=50px'},200, 'swing');
-						}
+						enemy.css('left', enemy.position().left + 5);
 					}
-					else if(nextPos.position().top > enemy.position().top + 30)
+					else if(nextPos.position().left < enemy.position().left)
 					{
-						enemy.animate({top: '+=50px'},200, 'swing');
+						enemy.css('left', enemy.position().left - 5);
 					}
-					else
+					if(nextPos.position().top > enemy.position().top)
 					{
-						enemy.animate({top: '-=50px'},200, 'swing');
+						enemy.css('top', enemy.position().top + 5);
 					}
-					pathCount++;
+					else if(nextPos.position().top < enemy.position().top)
+					{
+						enemy.css('top', enemy.position().top - 5);
+					}
 
 					//if the path is at the end, the enemies are removed
 					if(pathCount === path.length)
@@ -420,10 +521,10 @@ var ready = function() {
 						setTimeout(function()
 						{
 	    				enemy.fadeOut('fast');
-						},300);
+						},100);
 						clearInterval(move);
 					}
-				},300);
+				},20);
 			};
 		});
 	});
