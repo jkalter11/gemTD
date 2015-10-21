@@ -209,10 +209,9 @@ h2 {
 .enemy {
 	width: 48px;
 	height: 48px;
-	border: 1px solid black;
-	border-radius: 50%;
-	background-color: white;
 	position: absolute;
+	background-image: url('/assets/minion.png');
+	background-repeat: no-repeat;
 	z-index: 10;
 }
 
@@ -299,4 +298,36 @@ h2 {
 	border-radius: 50%;
 	background-color: red;
 	position: absolute;
+}
+
+.faceEast {
+	background-position: -48px 0;
+}
+
+.faceWest {
+	background-position: -154px 0;
+}
+
+.faceNorth {
+	background-position: -106px 0;
+}
+
+.faceSouth {
+	background-position: 0px 0;
+}
+
+.faceNortheast {
+	background-position: -204px 0;
+}
+
+.faceNorthwest {
+	background-position: -174px 0;
+}
+
+.faceSoutheast {
+	background-position: -114px 0;
+}
+
+.faceSouthwest {
+	background-position: -144px 0;
 }

@@ -70,7 +70,7 @@ var ready = function() {
 		//create the enemies
 		for(var n = 0; n < 10; n++)
 		{
-			$('#main').append('<div id="'+ n +'" class="enemy"></div>');
+			$('#main').append('<div id="'+ n +'" class="enemy faceEast"></div>');
 		}
 
 		//invoke grid
@@ -498,21 +498,81 @@ var ready = function() {
 					{
 						pathCount++;
 					}
+					//moves right
 					if(nextPos.position().left > enemy.position().left)
 					{
+						enemy.removeClass('faceSouth faceNorth faceWest faceSoutheast faceSouthwest faceNortheast faceNorthwest faceEast');
 						enemy.css('left', enemy.position().left + 5);
+						/*if(nextPos.position().top > enemy.position().top)
+						{
+							enemy.addClass('faceSoutheast');
+						}
+						else if(nextPos.position().top < enemy.position().top)
+						{
+							enemy.addClass('faceNortheast');
+						}
+						else
+						{
+							enemy.addClass('faceEast');
+						}*/
+						enemy.addClass('faceEast');
 					}
+					//moves left
 					else if(nextPos.position().left < enemy.position().left)
 					{
+						enemy.removeClass('faceSouth faceNorth faceWest faceSoutheast faceSouthwest faceNortheast faceNorthwest faceEast');
 						enemy.css('left', enemy.position().left - 5);
+						/*if(nextPos.position().top > enemy.position().top)
+						{
+							enemy.addClass('faceSouthwest');
+						}
+						else if(nextPos.position().top < enemy.position().top)
+						{
+							enemy.addClass('faceNorthwest');
+						}
+						else
+						{
+							enemy.addClass('faceWest');
+						}*/
+						enemy.addClass('faceWest');
 					}
+					//moves down
 					if(nextPos.position().top > enemy.position().top)
 					{
+						enemy.removeClass('faceSouth faceNorth faceWest faceSoutheast faceSouthwest faceNortheast faceNorthwest faceEast');
 						enemy.css('top', enemy.position().top + 5);
+						/*if(nextPos.position().left > enemy.position().left)
+						{
+							enemy.addClass('faceSoutheast');
+						}
+						else if(nextPos.position().left < enemy.position().left)
+						{
+							enemy.addClass('faceSouthwest');
+						}
+						else
+						{
+							enemy.addClass('faceSouth');
+						}*/
+						enemy.addClass('faceSouth');
 					}
+					//moves up
 					else if(nextPos.position().top < enemy.position().top)
 					{
+						enemy.removeClass('faceSouth faceNorth faceWest faceSoutheast faceSouthwest faceNortheast faceNorthwest faceEast');
 						enemy.css('top', enemy.position().top - 5);
+						/*if(nextPos.position().left > enemy.position().left)
+						{
+							enemy.addClass('faceNortheast');
+						}
+						else if(nextPos.position().left < enemy.position().left)
+						{
+							enemy.addClass('faceNorthwest');
+						}
+						else
+						{
+							enemy.addClass('faceNorth');
+						}*/
+						enemy.addClass('faceNorth');
 					}
 
 					//if the path is at the end, the enemies are removed
